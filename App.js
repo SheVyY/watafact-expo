@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// Import necessary dependencies
+import { AppRegistry } from 'react-native';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import Fact from './screens/FactScreen'; // Import your FactScreen component
+import { name as appName } from './app.json';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+// Define your navigation stack
+const AppNavigator = createStackNavigator(
+  {
+    FactScreen: Fact,
   },
-});
+  {
+    initialRouteName: 'FactScreen',
+    headerMode: 'none', // Hide the header for all screens
+  }
+);
+
+// Create the app container for your navigation stack
+const AppContainer = createAppContainer(AppNavigator);
+
+// Register the main component
+AppRegistry.registerComponent(appName, () => AppContainer);
+
+// This file logically sets up your navigation stack and registers it as the main component.
